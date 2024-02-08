@@ -1,0 +1,9 @@
+{% extends 'store/base.html' %}
+
+{% block title %}<title>Accueil</title>{% endblock %}
+
+{% block content %}
+<h2>Bienvenue</h2>
+
+<p><a href="{% url 'books_list' %}">Liste des livres</a></p>
+{% endblock %}

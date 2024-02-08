@@ -1,0 +1,15 @@
+{% extends 'store/base.html' %}
+
+{% block title %}<title>Register a new book</title>{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_p }}
+        </table>
+        <input type="submit" value="{{ submit_text }}">
+    <form>
+
+    <p><a href="{% url 'books_list' %}">Liste des livres</a></p>
+{% endblock %}

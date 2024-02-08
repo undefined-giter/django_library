@@ -1,0 +1,39 @@
+{% extends 'store/base.html' %}
+
+{% block title %}
+    <title>
+        {% if book %}
+            {{ book.title|title }}
+        {% elif books %}
+            Your books
+        {% else %}
+            bienvenue
+        {% endif %}
+    </title>
+{% endblock %}
+
+{% block content %}
+    {% if books %}
+    <!-- object_list / book_list -->
+        {% for book in books %}
+
+            <li><a href="{% url 'selected_book' slug=book.slug %}">{{ book.title|title }}</a></li>
+
+        {% endfor %}
+
+
+    {% elif book %}
+        <h2>{{ book.title|title }}</h2>
+        <h3>{{ book.kind|title }}</h3>
+        <button><a href="{% url 'edit_book' slug=book.slug %}">Modifier "{{ book.title|title }}"</a></button>
+        <button><a href="{% url 'delete_book' slug=book.slug %}">Supprimer "{{ book.title|title }}"</a></button>
+    {% else %}
+        <h1>Votre librairie vous souhaite la bienvenue</h1>
+    {% endif %}
+
+    {% if not books %}
+        <p><a href="{% url 'books_list' %}">Liste des livres</a></p>
+    {% endif %}
+
+    <p><a href="{% url 'new_book' %}">Ajouter un livre</a></p>
+{% endblock %}
